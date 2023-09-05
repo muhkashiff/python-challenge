@@ -11,38 +11,53 @@ with open(csvpath,'r') as csvfile:
     #list of variable 
     monthCount=0
     profit_loss=0
-    column_index=1
+    avgChange=0
     profits=[]
-    losses=[]
-    greatest_decrease= ''
-    greatest_increase= ''
-    
-    
+    change=[] 
+    #count the number of months
     for row in csvreader:
         monthCount=monthCount+1
     #count net profit/loss
         netPl=int(row[1])
         profit_loss += netPl
-   
-        split_pl=row[1].split(',')
         value= int(row[1])
-    #average change #chatgpt code search...split profit loss within column
-        if value >= 0:
-            profits.append(value)
-        else:losses.append(value)
+    #find average change
+        profits.append(value)
+    #chat gpt search for finding differnece in consecutive row within column    
+    
     for x in profits:
-    #     print(x)
-        for y in losses:
-    #     print(y)
+        
+        for i in range(1, len(profits)):
+            chng=profits[i]-profits[i-1]
+            change.append(chng)
+            
+    #average change calculation reference from class room exercise
+    length = len(change)
+    totalc = 0.0
+    for x in change:
+        totalc += x
+        avgChange= totalc / length
+        roundavg=round(avgChange,2)
+    
 # Track greatest decrease or increase
                 
-            greatest_decrease=min(losses)
-            greatest_increase=max(profits)
-# Total number of Months
-    
+    greatest_decrease=min(change)
+    greatest_increase=max(change)
+# getting values of all variable
 
 Total_month=print(monthCount)
 Net_profit_loss=print(profit_loss)
-
-print(greatest_decrease)
+print(roundavg)
 print(greatest_increase)
+print(greatest_decrease)
+
+# Financial Analysis   
+name="Financial Analysis"
+Title=name.title() 
+print(Title)
+print("---------------------------")
+print(f"Total months:{monthCount}")
+print(f"Total: {profit_loss}")
+print(f'Average Change: {roundavg}')
+print(f'Greatest Increase in Profits: {greatest_increase}')
+print(f'Greatest Decrease in Profits: {greatest_decrease}')
