@@ -67,17 +67,18 @@ Title=name.title()
 print(Title)
 print("---------------------------")
 print(f"Total months:{monthCount}")
-print(f"Total: {profit_loss}")
-print(f'Average Change: {roundavg}')
+print(f"Total:{dollarsign}{profit_loss}")
+print(f'Average Change:{dollarsign}{roundavg}')
 print(f'Greatest Increase in Profits:{date_to_find_I} {dollarsign}{greatest_increase}')
 print(f'Greatest Decrease in Profits:{date_to_find_D} {dollarsign}{greatest_decrease}')
-# write output files
+# write output files, 
+# Reference https://github.com/joathanner/Python-Project/blob/master/main.py
 path=os.path.join("analysis","financial_analysis.txt")
 with open(path, "w", newline='') as datafile:
     datafile.write("Financial Analysis\n")
     datafile.write("------------------\n")
     datafile.write(f"Total months:{monthCount}\n")
-    datafile.write(f"Total: {profit_loss}\n")
-    datafile.write(f"Average Change: {roundavg}\n")
+    datafile.write(f"Total: {dollarsign}{profit_loss}\n")
+    datafile.write(f"Average Change: {dollarsign}{roundavg}\n")
     datafile.write(f"Greatest Increase in Profits:{date_to_find_I} {dollarsign}{greatest_increase}\n")
     datafile.write(f"Greatest Decrease in Profits:{date_to_find_D} {dollarsign}{greatest_decrease}\n")
