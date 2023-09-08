@@ -31,7 +31,9 @@ with open(csvpath,'r') as csvfile:
         candidateName. __add__(candidate)
     #Reference https://github.com/shrawantee/Python-PyBank-and-PyPoll/blob/master/HomeworkPython/PyPoll/PyPoll.py   
         candidate_vote_count=candidatesName.count(candidate)
+        Result_votes.append(candidate_vote_count)
         candidate_percentage=round(candidate_vote_count/votesCount*100,2)
+        Result_percentage.append(candidate_percentage)
         if candidate_percentage>50:
             winner=candidate
         
@@ -40,8 +42,8 @@ with open(csvpath,'r') as csvfile:
         print(candidate)
         print(candidate_vote_count)
         print(candidate_percentage)
-        print(winner)    
-    print(votesCount)
+    print(f'The winner is:{winner}')    
+    print(f'Total votes are: {votesCount}')
         
 
     # The percentage of votes each candidate won
@@ -55,8 +57,18 @@ with open(path, "w", newline='') as datafile:
     datafile.write("------------------\n")
     datafile.write(f"Total votes:{votesCount}\n")
     datafile.write("------------------\n")
-    for candidate in (set(candidatesName)):
-            
-        datafile.write(candidate+'\n')
+    for candidate in set(candidatesName):
+        name_str=str(candidate)
+        datafile.write(name_str + '\n')
+    for percentage in (Result_percentage):
+        perce_str=str(percentage)
+        datafile.write(perce_str + '\n')
+    for vote in (Result_votes):
+        vote_str=str(vote)
+        datafile.write(vote_str + '\n')
+    
+    
+
     datafile.write("------------------\n")
     datafile.write(f"winner:{winner}\n")
+    # I have tried to put results in columns to match result but was unsuccessful so i am submitting as is.
